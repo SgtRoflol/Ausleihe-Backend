@@ -19,53 +19,8 @@ router.get("/", (req, res, next) => {
 
 //borrow Vorgang erstellen
 router.post("/", (req, res, next) => {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1;
-    let year = today.getFullYear();
-    let dEnd = dd;
-    let mEnd = mm;
-    let yEnd = year;
-    let lang = false;
-    let endDate;
-    let begDate;
-
-    // 1,3,5,7,8,10,12 Monate mit 31 Tagen
-    if (mm <= 7 && mm % 2 != 0 || mm >= 8 && mm % 2 == 0) {
-        lang = true;
-    }
-
-    //februar
-    if (dd + 14 >= 28 && mm == 1) {
-        mEnd++;
-        dEnd = (dd + 14) - 28;
-        //datumsänderung bei langen Monaten
-    } else if (dd + 14 >= 31 && lang) {
-        if (mm == 12) {
-            mEnd = 0;
-            yEnd++;
-        }
-        mEnd++;
-        dEnd = (dd + 14) - 31;
-        //datumsänderung bei kurzen Monaten
-    } else if (dd + 14 >= 30 && lang == false) {
-        if (mm == 12) {
-            mEnd = 0;
-            yEnd++;
-        }
-        mEnd++;
-        dEnd = (dd + 14) - 30;
-    } else {
-        dEnd += 14;
-    }
-
-    if (dd < 10) dd = '0' + dd;
-    if (mm < 10) mm = '0' + mm;
-    if (dEnd < 10) dEnd = '0' + dEnd;
-    if (mEnd < 10) mEnd = '0' + mEnd;
-
-    begDate = dd + "." + mm + "." + year;
-    endDate = dEnd + "." + mEnd + "." + yEnd;
+    let begDate = new Date().toISOString().slice(0, 10); //heutiges Datum ohne Uhrzeit
+    let endDate = new Date(Date.now() + 12096e5).toISOString().slice(0, 10); //12096e5 = 2 Wochen in Millisekunden
 
     let obj = {
         id: borrows[borrows.length - 1].id + 1,  //AusleihID - Datum enthalten für bessere Verwaltung?
