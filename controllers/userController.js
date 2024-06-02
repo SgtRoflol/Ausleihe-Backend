@@ -22,7 +22,7 @@ const getSingleUser = (postID) => {
   if (obj != null) {                    //return obj if found
     return {"status": 200, data: obj};
   } else {                             //if not found the ID
-    return {"status": 404, data: "Not Found"};
+    return {"status": 204, data: "User Not Found"};
   }
 }
 
@@ -47,34 +47,41 @@ const createUser = (post) => {
 
 const changeUser = (postID, post) => {
 
-  let newobj  = {
+  for (let i = 0; i<users.length; i++) {
+    if (users[i].id == (postID)) {
+       let newobj  = {
     id: Number(postID),
     name: post.name,
     email: post.email,
     role: post.role,
     password: post.password,
-    date: users[Number(postID)].date//????
+    date: users[Number(postID)].date
    }
-
-  for (let i = 0; i<users.length; i++) {
-    if (users[i].id == (postID)) {
       users[i] = newobj;
 
+      found = true;
       var data = JSON.stringify(users, null, 2);
       fs.writeFileSync('models/users.json', data);
+      return {"status": 201, "data": newobj};
     }
-  }
-  return {"status": 201, "data": newobj};
+  }  return {"status": 404, "data": "Wrong user"}; 
+  
+ 
 }
 
 const deleteUser = (postID) => {
   let index = users.findIndex(element => element.id == postID);
-  users.splice(index, 1);
+  if (index > -1) {
+    users.splice(index, 1);
 
-  var data = JSON.stringify(users, null, 2);
-  fs.writeFileSync('models/blog.json', data);
-
-  return {"status": 201, "data": users};
+    var data = JSON.stringify(users, null, 2);
+    fs.writeFileSync('models/users.json', data);
+  
+    return {"status": 201, "data": users};
+  } else {
+    return {"status": 404, "data": "Wrong user ID"}
+  }
+ 
 }
 
 
