@@ -5,24 +5,24 @@ var router = express.Router();
 var controller = require('../controllers/equipmentController');
 
 router.route('/')
-.get((res,req,next)=>{
+.get((req,res,next)=>{
     let response = controller.getAllEquip();
-    res.json(response.data);
-    //res.json(status.status);
-})
-/* npm
-.post((res,req,next)=>{
-    let response = controller.postAllEquip;
+ res.status(response.status).json(response.data);
 })
 
+.post((req,res,next)=>{
+    let response = controller.createEquip(req.body);
+    res.status(response.status).json(response.data);
+})
+/*
 router.route('/:id')
-.get((res,req,next) =>{
+.get((req,res,next) =>{
     let response = controller.getIdEquip;    
 })
-.put((res,req,next) =>{
+.put((req,res,next) =>{
     let response = controller.putIdEquip;    
 })
-.delete((res,req,next) =>{
+.delete((req,res,next) =>{
     let response = controller.deleteIdEquip;    
 })
 */
