@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 const fs = require("fs");
-const data = fs.readFileSync("public/data/borrows.json");
+const data = fs.readFileSync("./models/borrows.json");
 let borrows = JSON.parse(data);
 
 //import controller functions
