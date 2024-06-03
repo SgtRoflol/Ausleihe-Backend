@@ -21,15 +21,6 @@
     "userId": 1
   },
   {
-    "id": 3,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "kann dein Handy schneller laden",
-    "number": 10,
-    "userId": 1
-  },
-  {
     "id": 4,
     "itemnumber": "003",
     "title": "Samsung",

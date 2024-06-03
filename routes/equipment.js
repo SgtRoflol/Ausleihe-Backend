@@ -17,15 +17,17 @@ router.route('/')
 
 router.route('/:id')
 .get((req,res,next) =>{
-    let response = controller.getIdEquip();    
+    let response = controller.getIdEquip(req.params.id);    
+    res.status(response.status).json(response.data);
 })
-/*
+
 .put((req,res,next) =>{
-    let response = controller.putIdEquip;    
+    let response = controller.putIdEquip(req.params.id, req.body); 
+    res.status(response.status).json(response.data);   
 })
 .delete((req,res,next) =>{
-    let response = controller.deleteIdEquip;    
+    let response = controller.deleteIdEquip(req.params.id);  
+    res.status(response.status).json(response.data);   
 })
-*/
-//blala
+
 module.exports = router;
