@@ -14,11 +14,12 @@ router.route('/')
     let response = controller.createEquip(req.body);
     res.status(response.status).json(response.data);
 })
-/*
+
 router.route('/:id')
 .get((req,res,next) =>{
-    let response = controller.getIdEquip;    
+    let response = controller.getIdEquip();    
 })
+/*
 .put((req,res,next) =>{
     let response = controller.putIdEquip;    
 })
