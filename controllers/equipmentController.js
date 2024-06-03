@@ -33,11 +33,15 @@ var createEquip = (post) =>{
   return {"status": 201, "data": obj};
 
 }
+
+var getIdEquip = (id) =>{
+  
+}
 module.exports = {
     getAllEquip,   
-    createEquip
-     /*
-    getIdEquip,
+    createEquip,
+    getIdEquip
+         /*
     putIdEquip,
     deleteIdEquip 
   */
