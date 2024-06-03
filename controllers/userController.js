@@ -50,12 +50,12 @@ const changeUser = (postID, post) => {
   for (let i = 0; i<users.length; i++) {
     if (users[i].id == (postID)) {
        let newobj  = {
-    id: Number(postID),
-    name: post.name,
-    email: post.email,
-    role: post.role,
-    password: post.password,
-    date: users[Number(postID)].date
+       id: Number(postID),
+       name: post.name,
+       email: post.email,
+       role: post.role,
+       password: post.password,
+       date: users[Number(postID)].date
    }
       users[i] = newobj;
 
