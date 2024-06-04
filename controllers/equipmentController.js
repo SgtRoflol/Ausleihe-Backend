@@ -46,7 +46,7 @@ var createEquip = (post) => {
     }
   }
   }
-  return{ "status": 201, "data": "Kein bestehenden Verwalter gefunden"};
+  return{ "status": 404, "data": "Kein bestehenden Verwalter gefunden"};
 }
 
 //GET ID:
@@ -86,7 +86,7 @@ var changeEquip = (id, post) => {
       }//user
     }//1.for
 }//if
-return{ "status": 201, "data": "Kein bestehenden Verwalter gefunden"};
+return{ "status": 404, "data": "Kein bestehenden Verwalter gefunden"};
 }
 
 var deleteEquip = (id) => {
