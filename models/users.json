@@ -8,22 +8,6 @@
     "date": "2024/06/02"
   },
   {
-    "id": 1,
-    "name": "Korel",
-    "email": "korel@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
-    "id": 2,
-    "name": "Korel",
-    "email": "korel@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
     "id": 3,
     "name": "Kaylee",
     "email": "kaylee@muster.de",
@@ -49,10 +33,26 @@
   },
   {
     "id": 6,
+    "name": "Kaylee",
+    "email": "kaylee@muster.de",
+    "role": "admin",
+    "password": "schulung123",
+    "date": "2024/06/02"
+  },
+  {
+    "id": 7,
+    "name": "Kaylee",
+    "email": "kaylee@muster.de",
+    "role": "admin",
+    "password": "schulung123",
+    "date": "2024/06/03"
+  },
+  {
+    "id": 8,
     "name": "Korel",
     "email": "korel@muster.de",
     "role": "admin",
     "password": "schulung123",
-    "date": "2024/06/02"
+    "date": "2024/06/03"
   }
 ]

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let usersController = require('../controllers/userController')
 
+//GET, POST
 router.route('/')
 .get((req,res,next) => {
   let response = usersController.getAllUsers();
@@ -12,6 +13,7 @@ router.route('/')
   res.status(response.status).json(response.data);
 })
 
+//GET, PUT, DELETE
 router.route('/:postID')
 .get((req,res,next) => {
   let response = usersController.getSingleUser(req.params.postID);
