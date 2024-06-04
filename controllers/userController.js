@@ -1,3 +1,9 @@
+/*
+Code by: Korel Öztekin
+Date: 04.06.2024
+*/
+
+//Import routes
 var express = require('express');
 var router = express.Router();
 
@@ -5,9 +11,12 @@ var router = express.Router();
 const fs = require('fs');
 var rawdata = fs.readFileSync('./models/users.json');
 
+
+// if: users.json has no object, create array []
 if (rawdata.length <= 0) {
   var users = [];
 } else {
+//else: JSON to javascript object
   var users = JSON.parse(rawdata);
 }
 
@@ -21,11 +30,12 @@ const getAllUsers = () => {
 // GET: getSingleUser = (req.params.id)
 const getSingleUser = (postID) => {
   var obj = users.find(element => element.id == postID);
-  // obj = users[N].id
-
-  if (obj != null) {                          //return obj if found
+  //returns the object in the array with the same ID as in URL
+  //if not found..
+  if (obj != null) {                          
     return {"status": 200, data: obj};
-  } else {                                    //if not found the ID
+  } else {           
+    //else if found...                       
     return {"status": 204, data: "User Not Found"};
   }
 }
@@ -36,6 +46,7 @@ const createUser = (post) => {
   var currentDate = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/');
   //Make from "Mon Jun 03 2024 15:19:16 GMT+0200 (Mitteleuropäische Sommerzeit)"" >>  "2024/06/0
 
+  //create the object from the body
   let obj  = {
     id: users.length > 0 ? users[users.length-1].id + 1 : 0, //if blog größer länge 0 mache ID, ansonsten mache 0
     name: post.name,
@@ -46,7 +57,7 @@ const createUser = (post) => {
   }
     users.push(obj);
 
-  //save File as JSON
+  //save new Array as JSON
   var data = JSON.stringify(users, null, 2);
   fs.writeFileSync('models/users.json', data);
   return {"status": 201, "data": obj};
@@ -67,7 +78,7 @@ const changeUser = (postID, post) => {
    }
       users[i] = newobj;
 
-      //save File as JSON
+      //save new File as JSON
       var data = JSON.stringify(users, null, 2);
       fs.writeFileSync('models/users.json', data);
       return {"status": 201, "data": newobj};
@@ -80,7 +91,7 @@ const changeUser = (postID, post) => {
 //DELETE: deleteUser = (req.params.id)
 const deleteUser = (postID) => {
   let index = users.findIndex(element => element.id == postID);
-  // index of the user[n].id == postID
+  // returns int; the number of the index with the same id as the URL
   // if file found...
   if (index > -1) {
     users.splice(index, 1);

@@ -1,3 +1,10 @@
+/*
+Code by: Korel Öztekin
+Date: 04.06.2024
+*/
+
+
+//Import routes
 var express = require('express');
 var router = express.Router();
 let usersController = require('../controllers/userController')
@@ -28,4 +35,6 @@ router.route('/:postID')
   res.status(response.status).json(response.data);
 })
 
+
+//export routes
 module.exports = router;
