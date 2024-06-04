@@ -1,32 +1,74 @@
 [
   {
-    "id": 0
+    "id": 0,
+    "itemnumber": "002",
+    "title": "Powerbank02",
+    "image": "foti",
+    "description": "hans",
+    "quantity": 10,
+    "userId": 1
   },
   {
     "id": 1,
-    "itemnumber": 1,
-    "title": "Powerbank01",
+    "itemnumber": "002",
+    "title": "Powerbank02",
     "image": "foti",
-    "description": "kann dein Handy laden",
-    "number": 20,
+    "description": "hans",
+    "quantity": 10,
     "userId": 1
   },
   {
     "id": 2,
-    "itemnumber": "001",
-    "title": "Powerbank01",
+    "itemnumber": "002",
+    "title": "Powerbank02",
     "image": "foti",
-    "description": "kann dein Handy laden",
-    "number": 20,
+    "description": "hans",
+    "quantity": 10,
     "userId": 1
   },
   {
     "id": 4,
-    "itemnumber": "003",
-    "title": "Samsung",
+    "itemnumber": "006",
+    "title": "Powerbank02",
     "image": "foti",
-    "description": "schwarz",
-    "number": 5,
+    "description": "hans",
+    "quantity": 10,
+    "userId": 4
+  },
+  {
+    "id": 5,
+    "itemnumber": "002",
+    "title": "Powerbank02",
+    "image": "foti",
+    "description": "hans",
+    "quantity": 10,
+    "userId": 1
+  },
+  {
+    "id": 6,
+    "itemnumber": "002",
+    "title": "Powerbank02",
+    "image": "foti",
+    "description": "hans",
+    "quantity": 10,
+    "userId": 1
+  },
+  {
+    "id": 7,
+    "itemnumber": "002",
+    "title": "Powerbank02",
+    "image": "foti",
+    "description": "hans",
+    "quantity": 10,
     "userId": 2
+  },
+  {
+    "id": 8,
+    "itemnumber": "002",
+    "title": "Powerbank02",
+    "image": "foti",
+    "description": "hans",
+    "quantity": 10,
+    "userId": 5
   }
 ]
