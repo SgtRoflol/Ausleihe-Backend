@@ -39,7 +39,7 @@ const editBorrows = (req, res, next) => {
     let index = -1
     index = borrows.findIndex(obj => obj.id == req.params.id);
     let obj = {
-        id: borrows[index],
+        id: index != -1 ? borrows[index].id : req.params.id,
         userID: req.body.userID ? req.body.userID : borrows[index].userID,
         begin: req.body.begin ? req.body.begin : borrows[index].begin,
         end: req.body.end ? Number(req.body.end) : Number(borrows[index].end),
