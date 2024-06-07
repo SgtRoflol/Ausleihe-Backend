@@ -31,7 +31,7 @@ const getAllUsers = () => {
 const getSingleUser = (postID) => {
   var obj = users.find(element => element.id == postID);
   //returns the object in the array with the same ID as in URL
-  //if not found..
+  //if found..
   if (obj != null) {                          
     return {"status": 200, data: obj};
   } else {           
@@ -45,15 +45,16 @@ const createUser = (post) => {
 
   var currentDate = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/');
   //Make from "Mon Jun 03 2024 15:19:16 GMT+0200 (Mitteleuropäische Sommerzeit)"" >>  "2024/06/0
+  //day is enough information
 
   //create the object from the body
   let obj  = {
-    id: users.length > 0 ? users[users.length-1].id + 1 : 0, //if blog größer länge 0 mache ID, ansonsten mache 0
+    id: users.length > 0 ? users[users.length-1].id + 1 : 0, //if blog item is not empty, check id of last item and add 1
     name: post.name,
     email: post.email,
     role: post.role,
     password: post.password,
-    date: currentDate
+    date: currentDate //automatic created
   }
     users.push(obj);
 
