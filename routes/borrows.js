@@ -11,20 +11,20 @@ router.route("/")
     //alle borrow Vorgänge anzeigen lassen
     .get((req, res, next) => {
         let response = borrowController.getAllBorrows(req);
-        res.status(200).send(response);
+        res.status(response.status).send(response.out);
     })
 
     //borrow Vorgang erstellen
     .post((req, res, next) => {
         let response = borrowController.createNewBorrow(req);
-        res.status(201).send(response);
+        res.status(response.status).send(response.out);
     });
 
 router.route("/:id")
     //borrow Vorgang an id Stelle anzeigen lassen
     .get((req, res, next) => {
         let response = borrowController.findID(req);
-        res.status(200).send(response);
+        res.status(response.status).send(response.out);
     })
     //userID editieren
     .put((req, res, next) => {
@@ -35,7 +35,7 @@ router.route("/:id")
     //borrow Vorgang löschen
     .delete((req, res, next) => {
         let response = borrowController.deleteBorrow(req);
-        res.status(200).send(response);
+        res.status(response.status).send(response.out);
     });
 
 
