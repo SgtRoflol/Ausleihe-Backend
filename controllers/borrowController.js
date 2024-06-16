@@ -54,14 +54,16 @@ const createNewBorrow = (req, res, next) => {
 
 //borrow Vorgang an id Stelle anzeigen lassen
 const findID = (req, res, next) => {
+    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
     const index = borrows.findIndex(obj => obj.id == req.params.id);
 
     if (index == -1) return { status: 404, out: "Kein Element mit dieser ID vorhanden" };
 
     return { status: 200, out: borrows[index] };
 }
-//userID editieren
+//user editieren 
 const editBorrows = (req, res, next) => {
+    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
     const index = borrows.findIndex(obj => obj.id == req.params.id);
     //wenn es keinen Eintrag gibt, wird ein neuer erstellt
     if (index == -1) {
@@ -82,6 +84,7 @@ const editBorrows = (req, res, next) => {
 
 //borrow Vorgang löschen
 const deleteBorrow = (req, res, next) => {
+    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
     const index = borrows.findIndex(obj => obj.id == req.params.id);
     if (index == -1) return { status: 404, out: "Kein Element mit dieser ID vorhanden" };
     borrows.splice(index, 1);

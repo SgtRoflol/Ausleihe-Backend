@@ -60,6 +60,7 @@ var createEquip = (post) => {
 
 //GET ID:
 var getIdEquip = (id) => {
+  if (id == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   let obj = equipments.find(element => element.id == id);
   if (obj != null) {
     return { "status": 200, "data": obj };
@@ -70,6 +71,7 @@ var getIdEquip = (id) => {
 }
 
 var changeEquip = (id, post) => {
+  if (id == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   var users = JSON.parse(userdata);
   const index = equipments.findIndex(element => element.id == id);
   if (index == -1) return (createEquip(post)); //wenn es keinen Eintrag gibt, wird ein neuer erstellt
@@ -99,6 +101,7 @@ var changeEquip = (id, post) => {
 
 //DELETE:
 var deleteEquip = (id) => {
+  if (id == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   let index = equipments.findIndex(element => element.id == id);
   if (index == -1) { return { "status": 404, "data": "Equipment nicht gefunden" } }
   equipments.splice(index, 1);

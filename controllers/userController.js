@@ -31,6 +31,7 @@ const getAllUsers = () => {
 
 // GET: getSingleUser = (req.params.id)
 const getSingleUser = (postID) => {
+  if (postID == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   var obj = users.find(element => element.id == postID);
   //returns the object in the array with the same ID as in URL
   //if found..
@@ -75,6 +76,7 @@ const createUser = (post) => {
 
 //PUT: changeUser = (req.params.id, req.body)
 const changeUser = (postID, post) => {
+  if (postID == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   const index = users.findIndex(element => element.id == postID);
   if (index == -1) return createUser(post);
   let newobj = {
@@ -96,6 +98,7 @@ const changeUser = (postID, post) => {
 
 //DELETE: deleteUser = (req.params.id)
 const deleteUser = (postID) => {
+  if (postID == undefined) return { "status": 400, "data": "Bitte geben Sie eine ID an" };
   let index = users.findIndex(element => element.id == postID);
   // returns int; the number of the index with the same id as the URL
   // if file found...
