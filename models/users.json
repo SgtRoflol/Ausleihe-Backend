@@ -1,82 +1,34 @@
 [
   {
-    "id": 0,
-    "name": "Kaylee",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
-    "id": 3,
-    "name": "Kaylee",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
-    "id": 5,
-    "name": "Kaylee",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
-    "id": 6,
-    "name": "Kaylee",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/02"
-  },
-  {
-    "id": 7,
-    "name": "Hallul",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "3d712e4d748eeefb27cc0299b282f7a1",
-    "date": "2024/06/04"
-  },
-  {
-    "id": 8,
-    "name": "Korel",
-    "email": "korel@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/03"
-  },
-  {
-    "id": 9,
-    "name": "Kaylee",
-    "email": "kaylee@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/04"
-  },
-  {
-    "id": 10,
-    "name": "Korel",
-    "email": "korel@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/04"
-  },
-  {
-    "id": 11,
-    "name": "Korel",
-    "email": "korel@muster.de",
-    "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/04"
-  },
-  {
-    "id": 12,
+    "id": 1,
     "name": "Kaylee",
     "email": "kaylee@muster.de",
     "role": "admin",
     "password": "e33a27b58e3f07c33f0953577f4089d5",
+    "date": "2024/06/16"
+  },
+  {
+    "id": 2,
+    "name": "Korel",
+    "email": "Korel@muster.de",
+    "role": "admin",
+    "password": "84c2ec91d323c7e6d8f35f887a33da0b",
+    "date": "2024/06/16"
+  },
+  {
+    "id": 3,
+    "name": "Theresa",
+    "email": "Resa@muster.de",
+    "role": "admin",
+    "password": "3771ce28b03afa5bf288bda75df09a24",
+    "date": "2024/06/16"
+  },
+  {
+    "id": 4,
+    "name": "Tim",
+    "email": "Tim@muster.de",
+    "role": "admin",
+    "password": "8654491d912099aa79f6dedfac8a7ba3",
     "date": "2024/06/16"
   }
 ]

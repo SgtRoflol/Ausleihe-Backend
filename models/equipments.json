@@ -1,19 +1,29 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "itemnumber": "002",
     "title": "Powerbank02",
-    "image": "public/images/huhu.png",
-    "description": "Hahahuhu",
+    "image": -1,
+    "description": "Eine Powerbank",
     "quantity": 10,
-    "userId": 11
+    "userId": 4
   },
   {
-    "id": 1,
-    "itemnumber": "007",
+    "id": 2,
+    "itemnumber": "004",
     "title": "Powerbank02",
-    "description": "Hahehuhu",
+    "image": "public/images/huhu.png",
+    "description": "Eine Powerbank",
     "quantity": 10,
-    "userId": 7
+    "userId": 4
+  },
+  {
+    "id": 3,
+    "itemnumber": "008",
+    "title": "Powerbank02",
+    "image": "public/images/huhu.png",
+    "description": "super tolle Powerbank",
+    "quantity": 10,
+    "userId": 4
   }
 ]

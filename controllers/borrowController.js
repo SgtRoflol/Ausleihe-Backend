@@ -16,7 +16,6 @@ var equipments = JSON.parse(equipmentdata);
 
 //alle borrow Vorgänge anzeigen lassen
 const getAllBorrows = (req, res, next) => {
-    if (borrows.length == 0) return { status: 404, out: "Keine borrow Vorgänge vorhanden" };
     return { status: 200, out: borrows };
 }
 
@@ -24,16 +23,16 @@ const getAllBorrows = (req, res, next) => {
 const createNewBorrow = (req, res, next) => {
 
     //Überprüfen ob User und Artikel vorhanden sind
-    let userIndex = users.findIndex(element => element.id == post.userId);
-    if (userIndex == -1 || users.length <= 0) return { "status": 404, "data": "Kein bestehenden Verwalter gefunden" };
-    let equipIndex = equipments.findIndex(element => element.itemnumber == post.itemnumber);
-    if (equipIndex != -1) return { "status": 404, "data": "Artikel nicht gefunden" };
+    let userIndex = users.findIndex(element => element.id == req.body.userID);
+    if (userIndex == -1 || users.length <= 0) return { "status": 404, out: "Keinen bestehenden Verwalter gefunden" };
+    let equipIndex = equipments.findIndex(element => element.id == req.body.powerbankID);
+    if (equipIndex == -1) return { "status": 404, out: "Artikel nicht gefunden" };
 
     let begDate = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/'); //heutiges Datum 
     let endDate = new Date(Date.now() + 12096e5).toISOString().replace('-', '/').split('T')[0].replace('-', '/'); //12096e5 = 2 Wochen in Millisekunden
 
     let obj = {
-        id: borrows.length != 0 ? borrows[borrows.length - 1].id + 1 : 0,  //ID des borrow Vorgangs
+        id: borrows.length != 0 ? borrows[borrows.length - 1].id + 1 : 1,  //ID des borrow Vorgangs
         userID: Number(req.body["userID"]),   //User der den Artikel ausgeliehen hat
         begin: begDate,   //beginn Datum
         end: endDate,            //enddatum zwei Wochen Ausleihzeit
@@ -54,7 +53,7 @@ const createNewBorrow = (req, res, next) => {
 
 //borrow Vorgang an id Stelle anzeigen lassen
 const findID = (req, res, next) => {
-    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
+    if (req.params.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
     const index = borrows.findIndex(obj => obj.id == req.params.id);
 
     if (index == -1) return { status: 404, out: "Kein Element mit dieser ID vorhanden" };
@@ -63,7 +62,17 @@ const findID = (req, res, next) => {
 }
 //user editieren 
 const editBorrows = (req, res, next) => {
-    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
+    if (req.params.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
+
+    if (req.body.userID) {
+        let userIndex = users.findIndex(element => element.id == req.body.userID);
+        if (userIndex == -1 || users.length <= 0) return { "status": 404, out: "Keinen bestehenden Verwalter gefunden" };
+    }
+    if (req.body.powerbankID) {
+        let equipIndex = equipments.findIndex(element => element.id == req.body.powerbankID);
+        if (equipIndex == -1) return { "status": 404, out: "Artikel nicht gefunden" };
+    }
+
     const index = borrows.findIndex(obj => obj.id == req.params.id);
     //wenn es keinen Eintrag gibt, wird ein neuer erstellt
     if (index == -1) {
@@ -84,7 +93,7 @@ const editBorrows = (req, res, next) => {
 
 //borrow Vorgang löschen
 const deleteBorrow = (req, res, next) => {
-    if (req.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
+    if (req.params.id == undefined) return { status: 400, out: "Bitte geben Sie eine ID an" };
     const index = borrows.findIndex(obj => obj.id == req.params.id);
     if (index == -1) return { status: 404, out: "Kein Element mit dieser ID vorhanden" };
     borrows.splice(index, 1);

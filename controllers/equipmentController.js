@@ -28,9 +28,11 @@ var getAllEquip = () => {
 var createEquip = (post) => {
   var users = JSON.parse(userdata);
   //Verwalter finden
+  const userIndex = users.findIndex(element => post.userId ? element.id == post.userId : equipments[index].userId == element.id);
+  if (userIndex == -1 || users.length <= 0) return { "status": 404, "data": "Kein bestehenden Verwalter gefunden" };
 
   let obj = {
-    id: equipments.length > 0 ? equipments[equipments.length - 1].id + 1 : 0, //if blog größer länge 0 mache ID, ansonsten mache 0
+    id: equipments.length > 0 ? equipments[equipments.length - 1].id + 1 : 1, //if blog größer länge 0 mache ID, ansonsten mache 0
     itemnumber: post.itemnumber, //Artikelnummer
     title: post.title, //Titel 
     image: post.image ? "public/images/" + post.image : -1, //Bild ist optional
@@ -41,7 +43,7 @@ var createEquip = (post) => {
   //Auf Vollständigkeit prüfen
   for (let key in obj) {
     if (obj[key] == undefined || obj[key] == null || obj[key] == "") {
-      return { status: 400, data: "Bitte alle Angaben machen -> itemnumber; title; (image); description; quantity; userId" };
+      return { status: 400, data: "Bitte alle Angaben machen -> itemnumber; title; (image); (description); quantity; userId" };
     }
   }
   //Bildpfad prüfen
@@ -90,6 +92,13 @@ var changeEquip = (id, post) => {
     quantity: Number(post.quantity) ? Number(post.quantity) : equipments[index].quantity,
     userId: Number(post.userId) ? Number(post.userId) : equipments[index].userId
   }
+
+  if (newObj.image != -1) {
+    if (!fs.existsSync(newObj.image)) {
+      return { status: 400, data: "Es Existiert kein Bild an diesem Pfad! Bild hochladen oder Feld leer lassen!" };
+    }
+  }
+
   equipments[index] = newObj; //ersetzt altes Objekt
 
   //neue Daten in JSON schreiben

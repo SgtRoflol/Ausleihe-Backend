@@ -52,11 +52,11 @@ const createUser = (post) => {
 
   //create the object from the body
   let obj = {
-    id: users.length > 0 ? users[users.length - 1].id + 1 : 0, //if blog item is not empty, check id of last item and add 1
+    id: users.length > 0 ? users[users.length - 1].id + 1 : 1, //if blog item is not empty, check id of last item and add 1
     name: post.name,
     email: post.email,
     role: post.role,
-    password: md5(post.password),
+    password: post.password ? md5(post.password) : null,
     date: currentDate //automatic created
   }
 
@@ -85,7 +85,7 @@ const changeUser = (postID, post) => {
     email: post.email ? post.email : users[index].email,
     role: post.role ? post.role : users[index].role,
     password: post.password ? md5(post.password) : users[index].password,
-    date: users[Number(postID)].date
+    date: users[index].date ? users[index].date : users[index].date
   }
   users[index] = newobj;
 
