@@ -33,11 +33,11 @@
   },
   {
     "id": 7,
-    "name": "Kaylee",
+    "name": "Hallul",
     "email": "kaylee@muster.de",
     "role": "admin",
-    "password": "schulung123",
-    "date": "2024/06/03"
+    "password": "3d712e4d748eeefb27cc0299b282f7a1",
+    "date": "2024/06/04"
   },
   {
     "id": 8,
@@ -70,5 +70,13 @@
     "role": "admin",
     "password": "schulung123",
     "date": "2024/06/04"
+  },
+  {
+    "id": 12,
+    "name": "Kaylee",
+    "email": "kaylee@muster.de",
+    "role": "admin",
+    "password": "e33a27b58e3f07c33f0953577f4089d5",
+    "date": "2024/06/16"
   }
 ]

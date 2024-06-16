@@ -3,72 +3,17 @@
     "id": 0,
     "itemnumber": "002",
     "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
+    "image": "public/images/huhu.png",
+    "description": "Hahahuhu",
     "quantity": 10,
-    "userId": 1
+    "userId": 11
   },
   {
     "id": 1,
-    "itemnumber": "002",
+    "itemnumber": "007",
     "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
+    "description": "Hahehuhu",
     "quantity": 10,
-    "userId": 1
-  },
-  {
-    "id": 2,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 1
-  },
-  {
-    "id": 4,
-    "itemnumber": "006",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 4
-  },
-  {
-    "id": 5,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 1
-  },
-  {
-    "id": 6,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 1
-  },
-  {
-    "id": 7,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 2
-  },
-  {
-    "id": 8,
-    "itemnumber": "002",
-    "title": "Powerbank02",
-    "image": "foti",
-    "description": "hans",
-    "quantity": 10,
-    "userId": 5
+    "userId": 7
   }
 ]

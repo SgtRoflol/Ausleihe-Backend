@@ -1,9 +1,18 @@
+/*
+Code by: Theresa Böhns
+revised by: Tim Feucht
+*/
 var express = require('express');
 var router = express.Router();
 
 const fs = require("fs");
 const data = fs.readFileSync("models/borrows.json");
 let borrows = JSON.parse(data);
+var userdata = fs.readFileSync('./models/users.json');
+var equipmentdata = fs.readFileSync('./models/equipments.json');
+
+var users = JSON.parse(userdata);
+var equipments = JSON.parse(equipmentdata);
 
 //alle borrow Vorgänge anzeigen lassen
 const getAllBorrows = (req, res, next) => {
@@ -13,11 +22,18 @@ const getAllBorrows = (req, res, next) => {
 
 //borrow Vorgang erstellen
 const createNewBorrow = (req, res, next) => {
-    let begDate = new Date().toISOString().slice(0, 10); //heutiges Datum ohne Uhrzeit
-    let endDate = new Date(Date.now() + 12096e5).toISOString().slice(0, 10); //12096e5 = 2 Wochen in Millisekunden
+
+    //Überprüfen ob User und Artikel vorhanden sind
+    let userIndex = users.findIndex(element => element.id == post.userId);
+    if (userIndex == -1 || users.length <= 0) return { "status": 404, "data": "Kein bestehenden Verwalter gefunden" };
+    let equipIndex = equipments.findIndex(element => element.itemnumber == post.itemnumber);
+    if (equipIndex != -1) return { "status": 404, "data": "Artikel nicht gefunden" };
+
+    let begDate = new Date().toISOString().replace('-', '/').split('T')[0].replace('-', '/'); //heutiges Datum 
+    let endDate = new Date(Date.now() + 12096e5).toISOString().replace('-', '/').split('T')[0].replace('-', '/'); //12096e5 = 2 Wochen in Millisekunden
 
     let obj = {
-        id: borrows.length != 0 ? borrows[borrows.length - 1].id + 1 : 1,  //ID des borrow Vorgangs
+        id: borrows.length != 0 ? borrows[borrows.length - 1].id + 1 : 0,  //ID des borrow Vorgangs
         userID: Number(req.body["userID"]),   //User der den Artikel ausgeliehen hat
         begin: begDate,   //beginn Datum
         end: endDate,            //enddatum zwei Wochen Ausleihzeit

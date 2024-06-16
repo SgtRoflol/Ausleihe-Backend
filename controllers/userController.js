@@ -1,11 +1,13 @@
 /*
 Code by: Korel Öztekin
 Date: 04.06.2024
+revised by: Tim Feucht
 */
 
 //Import routes
 var express = require('express');
 var router = express.Router();
+var md5 = require('js-md5');
 
 //USE: create read and write config
 const fs = require('fs');
@@ -16,7 +18,7 @@ var rawdata = fs.readFileSync('./models/users.json');
 if (rawdata.length <= 0) {
   var users = [];
 } else {
-//else: JSON to javascript object
+  //else: JSON to javascript object
   var users = JSON.parse(rawdata);
 }
 
@@ -24,7 +26,7 @@ if (rawdata.length <= 0) {
 
 //GET: 
 const getAllUsers = () => {
-  return {"status": 200, "data": users};
+  return { "status": 200, "data": users };
 }
 
 // GET: getSingleUser = (req.params.id)
@@ -32,11 +34,11 @@ const getSingleUser = (postID) => {
   var obj = users.find(element => element.id == postID);
   //returns the object in the array with the same ID as in URL
   //if found..
-  if (obj != null) {                          
-    return {"status": 200, data: obj};
-  } else {           
-    //else if found...                       
-    return {"status": 204, data: "User Not Found"};
+  if (obj != null) {
+    return { "status": 200, data: obj };
+  } else {
+    //else if not found...                       
+    return { "status": 404, data: "Nutzer nicht gefunden" };
   }
 }
 
@@ -48,72 +50,72 @@ const createUser = (post) => {
   //day is enough information
 
   //create the object from the body
-  let obj  = {
-    id: users.length > 0 ? users[users.length-1].id + 1 : 0, //if blog item is not empty, check id of last item and add 1
+  let obj = {
+    id: users.length > 0 ? users[users.length - 1].id + 1 : 0, //if blog item is not empty, check id of last item and add 1
     name: post.name,
     email: post.email,
     role: post.role,
-    password: post.password,
+    password: md5(post.password),
     date: currentDate //automatic created
   }
-    users.push(obj);
+
+  //check if all fields are filled
+  for (let key in obj) {
+    if (obj[key] == undefined || obj[key] == null || obj[key] == "") {
+      return { "status": 400, "data": "Bitte alle Angaben machen -> name; email; role; password" };
+    }
+  }
+  users.push(obj);
 
   //save new Array as JSON
   var data = JSON.stringify(users, null, 2);
   fs.writeFileSync('models/users.json', data);
-  return {"status": 201, "data": obj};
+  return { "status": 201, "data": obj };
 }
 
 //PUT: changeUser = (req.params.id, req.body)
 const changeUser = (postID, post) => {
+  const index = users.findIndex(element => element.id == postID);
+  if (index == -1) return createUser(post);
+  let newobj = {
+    id: Number(users[index].id),
+    name: post.name ? post.name : users[index].name,
+    email: post.email ? post.email : users[index].email,
+    role: post.role ? post.role : users[index].role,
+    password: post.password ? md5(post.password) : users[index].password,
+    date: users[Number(postID)].date
+  }
+  users[index] = newobj;
 
-  for (let i = 0; i<users.length; i++) {
-    if (users[i].id == (postID)) {
-       let newobj  = {
-       id: Number(postID),
-       name: post.name,
-       email: post.email,
-       role: post.role,
-       password: post.password,
-       date: users[Number(postID)].date
-   }
-      users[i] = newobj;
-
-      //save new File as JSON
-      var data = JSON.stringify(users, null, 2);
-      fs.writeFileSync('models/users.json', data);
-      return {"status": 201, "data": newobj};
-    }
-  } return {"status": 404, "data": "Wrong user"}; 
-  
- 
+  //save new File as JSON
+  var data = JSON.stringify(users, null, 2);
+  fs.writeFileSync('models/users.json', data);
+  return { "status": 200, "data": newobj };
 }
+
 
 //DELETE: deleteUser = (req.params.id)
 const deleteUser = (postID) => {
   let index = users.findIndex(element => element.id == postID);
   // returns int; the number of the index with the same id as the URL
   // if file found...
-  if (index > -1) {
-    users.splice(index, 1);
+  if (index == -1) { return { "status": 404, "data": "Nutzer nicht gefunden" } }
 
-    //save File as JSON
-    var data = JSON.stringify(users, null, 2);
-    fs.writeFileSync('models/users.json', data);
-  
-    return {"status": 200, "data": users};
-  } else {
-    return {"status": 404, "data": "Wrong user ID"}
-  }
- 
+  users.splice(index, 1);
+
+  //save File as JSON
+  var data = JSON.stringify(users, null, 2);
+  fs.writeFileSync('models/users.json', data);
+
+  return { "status": 200, "data": "Nutzer gelöscht" };
 }
 
 
 //EXPORTS
 module.exports = {
-    getAllUsers,
-    getSingleUser,
-    createUser,
-    changeUser,
-    deleteUser
+  getAllUsers,
+  getSingleUser,
+  createUser,
+  changeUser,
+  deleteUser
 }
